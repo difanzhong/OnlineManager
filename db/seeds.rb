@@ -17,3 +17,12 @@
 	]
 	note.save
 end 
+
+10.times do
+	task = Task.new(
+			details: Faker::Dessert.flavor,
+			priority: Faker::Number.number(digits: 1)
+		)
+
+	task.save
+end 

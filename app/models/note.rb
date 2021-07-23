@@ -7,5 +7,6 @@ class Note
   field :level, type: Integer
   field :name, type: String
 
-  has_many :tasks, dependent: :destroy
+  embeds_many :tasks
+  accepts_nested_attributes_for :tasks
 end

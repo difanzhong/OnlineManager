@@ -18,9 +18,9 @@ module Api
       # POST /notes
       def create
         @note = Note.new(note_params)
-    
+
         if @note.save
-          render json: @note, status: :created, location: @note
+          render json: {status:'SUCCESS', Message: 'Saved note', data: @note}, status: :ok
         else
           render json: @note.errors, status: :unprocessable_entity
         end
@@ -29,7 +29,7 @@ module Api
       # PATCH/PUT /notes/1
       def update
         if @note.update(note_params)
-          render json: @note
+          render json: {status:'SUCCESS', Message: 'Saved note', data: @note}, status: :ok
         else
           render json: @note.errors, status: :unprocessable_entity
         end
@@ -48,7 +48,7 @@ module Api
     
         # Only allow a list of trusted parameters through.
         def note_params
-          params.require(:note).permit(:finish_date, :level, :name)
+          params.require(:note).permit(:finish_date, :level, :name, tasks: [:details, :priority])
         end
     end    
   end

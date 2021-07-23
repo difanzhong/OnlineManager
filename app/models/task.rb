@@ -3,5 +3,5 @@ class Task
   include Mongoid::Timestamps
   field :details, type: String
   field :priority, type: Integer
-  belongs_to :note
+  embedded_in :note, polymorphic: true
 end
