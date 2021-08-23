@@ -5,7 +5,7 @@ module Api
     
       # GET /notes
       def index
-        @notes = Note.all
+        @notes = Note.order("created_at DESC").all
     
         render json: @notes
       end
@@ -48,7 +48,8 @@ module Api
     
         # Only allow a list of trusted parameters through.
         def note_params
-          params.require(:note).permit(:finish_date, :level, :name, tasks: [:details, :priority])
+          # params.require(:note).permit(:finish_date, :level, :name, tasks: [:details, :priority])
+          params.permit(:finish_date, :level, :name, tasks: [:details, :priority])
         end
     end    
   end
